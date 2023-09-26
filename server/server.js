@@ -13,7 +13,7 @@ const {
 const app = express();
 const server = require("http").createServer(app);
 
-const PORT = 8000;
+const PORT = 4000;
 
 app
   .use(express.json())
