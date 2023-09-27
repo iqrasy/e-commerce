@@ -25,60 +25,26 @@ const Tools = () => {
 		<>
 			{/* <Header /> */}
 			{/* <CartContainer setCartItems={setCartItems} cartItems={cartItems} /> */}
-			<Main>
-				<Grid>
+			<div className="main">
+				<div className="second">
 					{tools.map((item, i) => (
 						<div key={i}>
-							<Icon>
+							<div className="icon">
 								<HiOutlineHeart />
-							</Icon>
-							<Button onClick={() => navigate(`/item/${item.id}`)}>
-								<img src={item.heroImage} />
-								<p>{item.brandName}</p>
-								<p>{item.reviews}</p>
-								<p>{item.currentSku.listPrice}</p>
-							</Button>
+							</div>
+							<button className="item-button" onClick={() => navigate(`/item/${item.id}`)}>
+								<img className="items" src={item.heroImage} />
+								<p className="para">{item.brandName}</p>
+								<p className="para">{item.reviews}</p>
+								<p className="para">{item.currentSku.listPrice}</p>
+							</button>
 						</div>
 					))}
-				</Grid>
-			</Main>
+				</div>
+			</div>
 		</>
 	);
 };
 
 export default Tools
 
-const Main = styled.div`
-	margin-top: 10em;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	img {
-		width: 220px !important;
-		height: 220px;
-	}
-
-	p {
-		word-break: break-all;
-		margin-top: 0.5em;
-		text-align: start;
-	}
-`;
-
-const Button = styled.button`
-	width: 22em;
-	height: 20em;
-	border: none;
-	background: transparent;
-`;
-
-const Grid = styled.div`
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 10px;
-`;
-
-const Icon = styled.div`
-	font-size: 1.3em;
-`;

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./HomePage";
+import LandingPage from "./LandingPage";
 import GlobalStyles from "./GlobalStyle"
 import ItemPage from "./ItemPage";
 
@@ -8,7 +8,7 @@ const App = () => {
     <BrowserRouter>
     <GlobalStyles />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LandingPage />} />
         {/* <Route path="/item/:id" element={<ItemPage />}/> */}
       </Routes>
     </BrowserRouter>

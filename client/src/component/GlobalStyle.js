@@ -23,6 +23,41 @@ body {
     font-family: 'Nanum Gothic Coding', monospace; */
   }
 
-`
+  .items{
+    width: 220px !important;
+		height: 220px;
+  }
+
+  .main {
+    	margin-top: 10em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+
+  .para {
+    word-break: break-all;
+		margin-top: 0.5em;
+		text-align: start;
+  }
+
+  .second {
+    display: grid;
+	  grid-template-columns: repeat(3, 1fr);
+	  gap: 10px;
+  }
+
+  .icon {
+	font-size: 1.3em;
+  }
+
+  .item-button {
+    width: 22em;
+	  height: 20em;
+	  border: none;
+	  background: transparent;
+  }
+
+`;
 
 export default GlobalStyles;
