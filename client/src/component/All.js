@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import CategoryItems from "../Items/CategoryItems";
+import CategoryItems from "./CategoryItems";
 import { useNavigate } from "react-router-dom";
 
 const All = () => {

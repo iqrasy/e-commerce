@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import CartContainer from "./CartContainer";
-import All from "./Items/All";
 import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {

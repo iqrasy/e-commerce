@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./LandingPage";
 import GlobalStyles from "./GlobalStyle";
 import ItemPage from "./ItemPage";
-import All from "./Items/All";
+import All from ".//All";
 
 const App = () => {
 	return (
