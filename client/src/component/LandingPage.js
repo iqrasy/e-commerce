@@ -3,10 +3,12 @@ import styled from "styled-components";
 import Header from "./Header";
 import CartContainer from "./CartContainer";
 import All from "./Items/All";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
 	const [cartItems, setCartItems] = useState([]);
 	const [likes, setLikes] = useState({});
+	const navigate = useNavigate()
 
 	// const handleLike = (itemId) => {
 	//   setLikes((prevLikes) => ({
@@ -30,7 +32,9 @@ const LandingPage = () => {
 
 	return (
 		<>
-			<All />
+			<div>
+			<button onClick={() => navigate("/all")}>Get started</button>
+			</div>
 		</>
 	);
 };

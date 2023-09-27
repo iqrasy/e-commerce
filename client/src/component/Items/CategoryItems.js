@@ -1,32 +1,29 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { HiOutlineHeart } from "react-icons/hi";
 
-const Skin = () => {
-	const [skin, setSkin] = useState([]);
+const CategoryItems = ({ category, apiEndpoint, navigate }) => {
+	const [items, setItems] = useState([]);
+
 	useEffect(() => {
-		fetch("/skincare")
+		fetch(apiEndpoint)
 			.then((res) => res.json())
 			.then((resItems) => {
-				setSkin(resItems.data);
-				// console.log(resItems.data);
+				setItems(resItems.data);
 			})
 			.catch((error) => {
 				console.log(error);
 			});
-	}, []);
+	}, [apiEndpoint]);
 
-	if (!skin) {
+	if (!items) {
 		return <p>Loading...</p>;
 	}
 
 	return (
 		<>
-			{/* <Header /> */}
-			{/* <CartContainer setCartItems={setCartItems} cartItems={cartItems} /> */}
 			<div className="main">
 				<div className="second">
-					{skin.map((item, i) => (
+					{items.map((item, i) => (
 						<div key={i} className="third">
 							<div className="icon">
 								<HiOutlineHeart />
@@ -35,9 +32,12 @@ const Skin = () => {
 								className="item-button"
 								onClick={() => navigate(`/item/${item.id}`)}
 							>
-								<img className="items" src={item.heroImage} />
+								<img
+									className="items"
+									src={item.heroImage}
+									alt={item.brandName}
+								/>
 								<p className="para">{item.brandName}</p>
-								{/* <p className="para">{item.reviews}</p> */}
 								<p className="para">{item.currentSku.listPrice}</p>
 							</button>
 						</div>
@@ -48,4 +48,4 @@ const Skin = () => {
 	);
 };
 
-export default Skin;
+export default CategoryItems;

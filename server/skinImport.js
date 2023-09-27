@@ -2,6 +2,7 @@ const { MongoClient } = require("mongodb");
 require("dotenv").config();
 const { MONGO_URI, API_KEY } = process.env;
 const axios = require("axios");
+const { log } = require("console");
 
 const options = {
     useNewUrlParser: true,
@@ -48,7 +49,8 @@ const skinImport = async () => {
       seoMetaDescription: seo,
     }));
 
-    const result = await db.collection("skincare").insertMany(documents);
+      const result = await db.collection("skincare").insertMany(documents);
+      // console.log(newData);
         
     } catch (error) {
         

@@ -28,7 +28,7 @@ const Makeup = () => {
 			<div className="main">
 				<div className="second">
 					{makeup.map((item, i) => (
-						<div key={i}>
+						<div key={i} className="third">
 							<div className="icon">
 								<HiOutlineHeart />
 							</div>
@@ -38,7 +38,7 @@ const Makeup = () => {
 							>
 								<img className="items" src={item.heroImage} />
 								<p className="para">{item.brandName}</p>
-								<p className="para">{item.reviews}</p>
+								{/* <p className="para">{item.reviews}</p> */}
 								<p className="para">{item.currentSku.listPrice}</p>
 							</button>
 						</div>
