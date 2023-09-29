@@ -8,67 +8,15 @@ const All = () => {
 	const [search, setSearch] = useState("");
 	const navigate = useNavigate();
 
-	// const handleSwitch = () => {
-	// 	switch (selected) {
-	// 		case "Makeup":
-	// 			return <Makeup search={search} />;
-	// 		case "Bath":
-	// 			return <Bath search={search} />;
-	// 		case "Fragrance":
-	// 			return <Fragrance search={search} />;
-	// 		case "Men":
-	// 			return <Men search={search} />;
-	// 		case "Skin":
-	// 			return <Skin search={search} />;
-	// 		case "Tools":
-	// 			return <Tools search={search} />;
-	// 		default:
-	// 			return <div>PLEASE CHOOSE ONE</div>;
-	// 	}
-	// };
-
-
-
-
 	return (
 		<div>
 			<div>
-				<button
-					// active={selected === "Makeup" && <Makeup search={search} />}
-					onClick={() => setSelected("Makeup")}
-				>
-					Makeup
-				</button>
-				<button
-					// active={selected === "Bath" && <Bath search={search} />}
-					onClick={() => setSelected("Bath")}
-				>
-					Bath
-				</button>
-				<button
-					// active={selected === "Fragrance" && <Fragrance search={search} />}
-					onClick={() => setSelected("Fragrance")}
-				>
-					Fragrance
-				</button>
-				<button
-					// active={selected === "Men" && <Men search={search} />}
-					onClick={() => setSelected("Men")}
-				>
-					Men
-				</button>
-				<button
-					// active={selected === "Skin" && <Skin search={search} />}
-					onClick={() => setSelected("Skin")}
-				>
-					Skin
-				</button>
-				<button
-					// active={selected === "Tools" && <Tools search={search} />}
-					onClick={() => setSelected("Tools")}
-				>
-					Tools
-				</button>
+				<button onClick={() => setSelected("Makeup")}>Makeup</button>
+				<button onClick={() => setSelected("Bath")}>Bath</button>
+				<button onClick={() => setSelected("Fragrance")}>Fragrance</button>
+				<button onClick={() => setSelected("Men")}>Men</button>
+				<button onClick={() => setSelected("Skin")}>Skin</button>
+				<button onClick={() => setSelected("Tools")}>Tools</button>
 			</div>
 			<div>
 				{search.length === 0}
@@ -81,7 +29,6 @@ const All = () => {
 					navigate={navigate}
 				/>
 			)}
-			{/* {handleSwitch()} */}
 		</div>
 	);
 };

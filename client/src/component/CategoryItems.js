@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { HiOutlineHeart } from "react-icons/hi";
 
-const CategoryItems = ({ category, apiEndpoint, navigate }) => {
+const CategoryItems = ({ category, apiEndpoint }) => {
+	const [selected, setSelected] = useState("");
 	const [items, setItems] = useState([]);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetch(apiEndpoint)
@@ -19,19 +22,25 @@ const CategoryItems = ({ category, apiEndpoint, navigate }) => {
 		return <p>Loading...</p>;
 	}
 
+	const redirectToItemPage = (productId) => {
+		navigate(`/api${apiEndpoint}/${productId}`);
+		// console.log(navigate);
+	};
+
 	return (
 		<>
 			<div className="main">
 				<div className="second">
 					{items.map((item, i) => (
-						<div key={i} className="third">
+						<div
+							key={i}
+							className="third"
+							onClick={() => redirectToItemPage(item.productId)}
+						>
 							<div className="icon">
 								<HiOutlineHeart />
 							</div>
-							<button
-								className="item-button"
-								onClick={() => navigate(`/item/${item.id}`)}
-							>
+							<button className="item-button">
 								<img
 									className="items"
 									src={item.heroImage}

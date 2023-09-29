@@ -11,6 +11,7 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/all" element={<All />} />
+				<Route path="/api/:category/:productId" element={<ItemPage />} />
 			</Routes>
 		</BrowserRouter>
 	);

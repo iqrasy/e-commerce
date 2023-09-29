@@ -1,47 +1,60 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Carousel from "react-bootstrap/Carousel";
 
 const ItemPage = () => {
-    const { id } = useParams()
-    const [details, setDetails] = useState(null)
-  
-    useEffect(() => {
-        fetch(`/item/${id}`)
-          .then((res) => res.json())
-          .then((resItems) => {
-            setDetails(resItems.data);
-            // console.log(resItems.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }, [id]);
+	const { productId, category } = useParams();
+	const [details, setDetails] = useState(null);
 
-      if (!details) {
-        return <p>Loading...</p>;
-      }
+	useEffect(() => {
+		const apiEndpoint = `/api/${category}/${productId}`;
+		fetch(apiEndpoint)
+			.then((res) => res.json())
+			.then((resItems) => {
+				setDetails(resItems.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}, [category, productId]);
 
-  return (
-    <div>
-      <p>{details.product?.name}</p>
-      <p>{details.product?.benefits}</p>
-      <Container key={details.id}>
-      <Carousel>
-      {details.product["image-urls"].map((item, i) => (
-        <Carousel.Item key={i}>
-           <img
-            className="d-block w-100"
-            src={item}
-            alt={`Image ${i}`}
-          />
-        </Carousel.Item>
-      ))}
-      </Carousel>
-      </Container>
-    </div>
-  )
-}
+	if (!details) {
+		return <p>Loading...</p>;
+	}
 
-export default ItemPage
+	if (details.pickupEligible === true) {
+		return <p>Click here to pick up your order</p>;
+	}
+
+	return (
+		<div>
+			<p>{details.name}</p>
+			<p>{details.brandName}</p>
+			<p>{details.currentSku.listPrice}</p>
+			<p>{details.seoMetaDescription}</p>
+			<p>{details.currentSku.imageAltText}</p>
+			<p>{details.targetUrl}</p>
+			<Container>
+				<Carousel interval={null}>
+					<Carousel.Item>
+						<img
+							className="d-block w-100"
+							src={details.heroImage}
+							alt="Alt Image"
+						/>
+					</Carousel.Item>
+					<Carousel.Item>
+						<img
+							className="d-block w-100"
+							src={details.altImage}
+							alt="Hero Image"
+						/>
+					</Carousel.Item>
+				</Carousel>
+			</Container>
+		</div>
+	);
+};
+
+export default ItemPage;
