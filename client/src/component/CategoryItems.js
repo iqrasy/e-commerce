@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { HiOutlineHeart } from "react-icons/hi";
 
 const CategoryItems = ({ category, apiEndpoint }) => {
-	const [selected, setSelected] = useState("");
 	const [items, setItems] = useState([]);
 	const navigate = useNavigate();
 
@@ -24,7 +23,6 @@ const CategoryItems = ({ category, apiEndpoint }) => {
 
 	const redirectToItemPage = (productId) => {
 		navigate(`/api${apiEndpoint}/${productId}`);
-		// console.log(navigate);
 	};
 
 	return (
