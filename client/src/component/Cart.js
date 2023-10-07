@@ -4,15 +4,33 @@ import { useCart } from "./CartContext";
 
 const Cart = () => {
 	const { cartItems, clearCart } = useCart();
+	// console.log(cartItems);
+
+	const getTotal = () => {
+		let total = 0;
+		cartItems.map((item) => {
+			const price = item.currentSku.listPrice;
+			for (let i = 0; i < price.length; i++) {
+				total += price[i];
+			}
+		});
+		console.log(total);
+		return total;
+	};
 
 	return (
 		<div>
 			<h2>Cart</h2>
 			<ul>
 				{cartItems.map((item, index) => (
-					<li key={index}>{item.name}</li>
+					<>
+						<li key={index}>
+							{item.name} - {item.currentSku.listPrice}
+						</li>
+					</>
 				))}
 			</ul>
+			<p>Total: ${getTotal()}</p>
 			<button onClick={clearCart}>Clear Cart</button>
 		</div>
 	);

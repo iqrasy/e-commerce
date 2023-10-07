@@ -23,6 +23,12 @@ export const CartProvider = ({ children }) => {
 		localStorage.removeItem("cart");
 	};
 
+	const deleteItem = () => {};
+
+	const addOneItem = () => {};
+
+	const removeOneItem = () => {};
+
 	return (
 		<CartContext.Provider value={{ cartItems, addToCart, clearCart }}>
 			{children}

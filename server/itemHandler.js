@@ -16,10 +16,8 @@ const getMakeupId = async (req, res) => {
 		await client.connect();
 		const db = client.db("sephora");
 		const query = { productId: productId };
-		console.log("query", query);
 
 		const result = await db.collection("makeup").findOne(query);
-		console.log("result here", { result });
 
 		if (result !== null) {
 			res.status(200).json({
@@ -52,10 +50,8 @@ const getFragranceId = async (req, res) => {
 		await client.connect();
 		const db = client.db("sephora");
 		const query = { productId: productId };
-		console.log("query here", query);
 
 		const result = await db.collection("fragrance").findOne(query);
-		console.log("result here", { result });
 
 		if (result !== null) {
 			res.status(200).json({
@@ -88,10 +84,8 @@ const getToolsId = async (req, res) => {
 		await client.connect();
 		const db = client.db("sephora");
 		const query = { productId: productId };
-		console.log("query here", query);
 
 		const result = await db.collection("tools").findOne(query);
-		console.log("result here", { result });
 
 		if (result !== null) {
 			res.status(200).json({
@@ -124,10 +118,8 @@ const getSkincareId = async (req, res) => {
 		await client.connect();
 		const db = client.db("sephora");
 		const query = { productId: productId };
-		console.log("query here", query);
 
 		const result = await db.collection("skincare").findOne(query);
-		console.log("result here", { result });
 
 		if (result !== null) {
 			res.status(200).json({
@@ -160,10 +152,8 @@ const getBathId = async (req, res) => {
 		await client.connect();
 		const db = client.db("sephora");
 		const query = { productId: productId };
-		console.log("query here", query);
 
 		const result = await db.collection("bath").findOne(query);
-		console.log("result here", { result });
 
 		if (result !== null) {
 			res.status(200).json({
@@ -196,10 +186,8 @@ const getMenId = async (req, res) => {
 		await client.connect();
 		const db = client.db("sephora");
 		const query = { productId: productId };
-		console.log("query here", query);
 
 		const result = await db.collection("men").findOne(query);
-		console.log("result here", { result });
 
 		if (result !== null) {
 			res.status(200).json({

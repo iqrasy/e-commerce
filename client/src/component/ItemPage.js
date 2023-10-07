@@ -1,16 +1,18 @@
-import React, { useState, useEffect, createContext, useReducer } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Carousel from "react-bootstrap/Carousel";
 import { LuShoppingCart } from "react-icons/lu";
 import { useCart } from "./CartContext";
+import Dropdown from "./Dropdown";
 
 const ItemPage = () => {
 	const { productId, category } = useParams();
-	const [cartItems, setCartItems] = useState([]);
+	const [itemDeets, setItemDeets] = useState(null);
 	const [details, setDetails] = useState(null);
 	const navigate = useNavigate();
-	 const { addToCart } = useCart();
+	const { addToCart } = useCart();
+	const apiKey = process.env.REACT_APP_API_KEY;
 
 	useEffect(() => {
 		const apiEndpoint = `/api/${category}/${productId}`;
@@ -24,6 +26,28 @@ const ItemPage = () => {
 			});
 	}, [category, productId]);
 
+	useEffect(() => {
+		if (details?.currentSku?.skuId) {
+			const preferedId = details.currentSku.skuId;
+			const url = `https://sephora.p.rapidapi.com/products/detail?productId=${productId}&preferedSku=${preferedId}`;
+			const options = {
+				method: "GET",
+				headers: {
+					"X-RapidAPI-Key": apiKey,
+					"X-RapidAPI-Host": "sephora.p.rapidapi.com",
+				},
+			};
+			fetch(url, options)
+				.then((res) => res.json())
+				.then((resDeets) => {
+					setItemDeets(resDeets);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
+	}, [details?.currentSku?.skuId]);
+
 	if (!details) {
 		return <p>Loading...</p>;
 	}
@@ -32,19 +56,19 @@ const ItemPage = () => {
 		return <p>Click here to pick up your order</p>;
 	}
 
-	// const addToCart = (product) => {
-	// 	setCartItems([...cartItems, product]);
-	// };
-
 	return (
 		<>
 			<div>
 				<p>{details.name}</p>
 				<p>{details.brandName}</p>
-				<p>{details.currentSku.listPrice}</p>
+				{/* <p>{details.currentSku?.listPrice}</p> */}
 				<p>{details.seoMetaDescription}</p>
-				<p>{details.currentSku.imageAltText}</p>
+				<p>{details.currentSku?.imageAltText}</p>
 				<p>{details.targetUrl}</p>
+				<p>{itemDeets?.currentSku?.size}</p>
+				<p>{itemDeets?.currentSku?.listPrice}</p>
+
+				<Dropdown itemDeets={itemDeets} />
 				<div className="cart">
 					<button
 						className="cart-button"
